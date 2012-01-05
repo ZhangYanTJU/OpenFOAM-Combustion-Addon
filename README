@@ -1,0 +1,6 @@
+Dependencies:
+ * Cuba 3.0
+
+CUBA 3.0
+========
+ CFLAGS=-fPIC ./configure --prefix=/home/hannes/Programme/Cuba-3.0/platforms/linux64GccDPOpt
