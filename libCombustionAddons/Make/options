@@ -1,0 +1,28 @@
+EXE_INC = \
+ -Wno-deprecated  -I$(CUBA_INC_PATH) \
+ -I$(LIB_SRC)/turbulenceModels/LES/LESdeltas/lnInclude \
+ -I$(LIB_SRC)/turbulenceModels/LES/LESfilters/lnInclude \
+ -I$(LIB_SRC)/turbulenceModels \
+ -I$(LIB_SRC)/transportModels \
+ -I$(LIB_SRC)/thermophysicalModels/basic/lnInclude \
+ -I$(LIB_SRC)/finiteVolume/lnInclude \
+ -I$(LIB_SRC)/sampling/lnInclude \
+ -I$(LIB_SRC)/meshTools/lnInclude \
+ -I$(LIB_SRC)/triSurface/lnInclude \
+ -I$(LIB_SRC)/lagrangian/basic/lnInclude \
+
+LIB_LIBS = \
+ -lmeshTools \
+ -ltriSurface \
+ -llagrangian \
+ -lfiniteVolume \
+ -lsampling \
+ -lcompressibleLESModels \
+ -lcompressibleRASModels \
+ -lincompressibleLESModels \
+ -lincompressibleRASModels \
+ -lLESfilters \
+ -lbasicThermophysicalModels \
+ -lspecie \
+ -L$(CUBA_LIB_PATH) -lcuba \
+ -lgsl -lgslcblas

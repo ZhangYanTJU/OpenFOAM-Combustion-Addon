@@ -1,0 +1,10 @@
+EXE_INC = \
+ -I$(CUBA_ARCH_PATH)/include \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/compositionPdf/lnInclude
+
+EXE_LIBS = \
+ -lgsl -lgslcblas \
+ -L$(CUBA_ARCH_PATH)/lib -lcuba \
+ -lcompositionPdf \
+ -lfiniteVolume
