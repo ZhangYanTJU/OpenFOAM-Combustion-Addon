@@ -1,0 +1,10 @@
+thickenedFlameOodles.C
+
+efficiencyFunction.C
+noEfficiency.C
+colinWrinkling.C
+
+sourceTerm.C
+airmix.C
+
+EXE = $(FOAM_APPBIN)/thickenedFlameOodles
