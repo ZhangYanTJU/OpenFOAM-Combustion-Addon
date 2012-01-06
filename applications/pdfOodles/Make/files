@@ -1,0 +1,4 @@
+ignition/ignitionSite.C
+pdfOodles.C
+
+EXE = $(FOAM_APPBIN)/pdfOodles
