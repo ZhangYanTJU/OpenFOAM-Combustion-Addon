@@ -1,0 +1,39 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.4                                   |
+|   \\  /    A nd           | Web:      http://www.openfoam.org               |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version         2.0;
+    format          ascii;
+
+    root            "";
+    case            "";
+    instance        "";
+    local           "";
+
+    class           dictionary;
+    object          thermophysicalProperties;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+efficiencyFunction colinWrinkling;
+
+delta           cubeRootVol;
+
+cubeRootVolCoeffs
+{
+    deltaCoeff      1;
+}
+
+alpha 0.02;
+deltal0 deltal0 [0 1 0 0 0 0 0] 1.6175E-03;
+sl0 sl0 [0 1 -1 0 0 0 0] 1.7959E-02;
+
+
+// ************************************************************************* //

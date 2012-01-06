@@ -1,0 +1,47 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.4                                   |
+|   \\  /    A nd           | Web:      http://www.openfoam.org               |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version         2.0;
+    format          ascii;
+
+    root            "";
+    case            "";
+    instance        "";
+    local           "";
+
+    class           dictionary;
+    object          combustionProperties;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+ignite          yes;
+
+ignitionSites   
+(
+    
+    {
+        location        (0.005 0 0.012);
+        diameter        0.01;
+        start           0;
+        duration        0.001;
+        strength        1;
+    }
+);
+
+ignitionSphereFraction 1;
+
+ignitionThickness ignitionThickness [0 1 0 0 0 0 0] 0.001;
+
+ignitionCircleFraction 0.5;
+
+ignitionKernelArea ignitionKernelArea [0 2 0 0 0 0 0] 0.001;
+
+// ************************************************************************* //
