@@ -1,0 +1,4 @@
+A turbulent bunsen flame according to the configuration F2 of 
+Chen et al. (RWTH Aachen). This case requires a varying mixture 
+fraction which results in a four-dimensional lookup table.
+For the inflow turbulence, the method of turbulent spots is used.

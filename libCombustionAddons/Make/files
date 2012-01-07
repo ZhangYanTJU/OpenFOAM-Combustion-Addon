@@ -30,5 +30,9 @@ thermophysicalModels/compositionPdf/flameSurfaceDensity/flameSurfaceDensity.C
 //functions/combustionProgress/combustionProgressFunctionObject.C
 //boundaryConditions/freeFlameInlet/freeFlameInlet.C
 //boundaryConditions/ORACLESinflow/ORACLESinflowFvPatchVectorField.C
+boundaryConditions/inflowGenerator/genericInflowGeneratorFvPatchVectorField.C
+boundaryConditions/inflowGenerator/spots/homogeneousTurbulence/homogeneousTurbulence.C
+boundaryConditions/inflowGenerator/spots/hat/hat.C
+boundaryConditions/inflowGenerator/inflowGeneratorFvPatchVectorFieldFwd.C
 
 LIB = $(FOAM_LIBBIN)/libCombustionAddons

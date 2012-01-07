@@ -1,0 +1,114 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.4                                   |
+|   \\  /    A nd           | Web:      http://www.openfoam.org               |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version         2.0;
+    format          ascii;
+
+    root            "";
+    case            "";
+    instance        "";
+    local           "";
+
+    class           dictionary;
+    object          controlDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     pdfOodles;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         10;
+
+deltaT          0.3e-05;
+
+writeControl    timeStep;
+
+writeInterval   200;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression compressed;
+
+timeFormat      general;
+
+timePrecision   8;
+
+runTimeModifiable yes;
+
+adjustTimeStep yes;
+
+maxCo 0.45;
+
+//libs ("libLTTRostockExtensions.so");
+/*
+functions
+(
+ preview
+ {
+        type surfaces;
+        functionObjectLibs ("libsampling.so" "libLTTRostockExtensions.so");
+        interval 50;
+        surfaceFormat mtv;
+        fields
+        (
+            U T p MeanWCO2Dot k CO2_Mean Z_Mean
+        );
+        surfaces
+        (
+            interpolatedPlane
+            {
+                type            plane;
+                basePoint       (0.0 0.0 1e-5);
+                normalVector    (0 1e-5 1);
+                interpolate     true;
+            }
+        );
+ }
+
+fieldAvg
+{
+        type fieldAverage;
+        functionObjectLibs ("libfieldAverage.so");
+        fields
+        (
+            U
+            {
+                mean            on;
+                prime2Mean      on;
+                base            time;
+            }
+            T
+            {
+                mean            on;
+                prime2Mean      on;
+                base            time;
+            }
+            p
+            {
+                mean            on;
+                prime2Mean      on;
+                base            time;
+            }
+        );
+    }
+);
+*/
+
+// ************************************************************************* //
