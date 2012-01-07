@@ -1,0 +1,157 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.4                                   |
+|   \\  /    A nd           | Web:      http://www.openfoam.org               |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version         2.0;
+    format          ascii;
+
+    root            "";
+    case            "";
+    instance        "";
+    local           "";
+
+    class           dictionary;
+    object          controlDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     pdfOodles;
+
+startFrom       latestTime;
+
+startTime       0;
+
+
+endTime         10;
+
+deltaT          1e-05;
+
+stopAt          endTime;
+writeControl    adjustableRunTime;
+writeInterval   1e-2;
+
+/*
+stopAt          nextWrite;
+writeControl    timeStep;
+writeInterval   2;
+*/
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression compressed;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable yes;
+
+adjustTimeStep yes;
+
+maxCo 0.35;
+
+functions
+(
+/*
+       minmax
+       {
+        type volumeMinMax;
+        functionObjectLibs
+        (
+          "libsimpleFunctionObjects.so"
+        );
+        fields
+        (
+         p k CO2_Mean CO2_MeanSqr Sigma MeanWCO2Dot
+        );
+       }
+ preview
+ {
+        type surfaces;
+        functionObjectLibs ("libsampling.so" "libLTTRostockExtensions.so");
+        interval 10;
+        surfaceFormat mtv;
+        fields
+        (
+            U T p Sigma MeanWCO2Dot k CO2_Mean
+        );
+        surfaces
+        (
+            interpolatedPlane
+            {
+                type            plane;
+                basePoint       (0.0 0.0 1e-5);
+                normalVector    (0 1e-5 1);
+                interpolate     true;
+            }
+        );
+ }
+
+fieldAvg
+{
+        type fieldAverage;
+        functionObjectLibs ("libfieldAverage.so");
+        fields
+        (
+            U
+            {
+                mean            on;
+                prime2Mean      on;
+                base            time;
+            }
+            T
+            {
+                mean            on;
+                prime2Mean      on;
+                base            time;
+            }
+            p
+            {
+                mean            on;
+                prime2Mean      on;
+                base            time;
+            }
+        );
+       }
+    probes1
+    {
+        // Type of functionObject
+        type probes;
+
+        // Where to load it from (if not already in solver)
+        functionObjectLibs ("libsampling.so");
+
+        // Locations to be probed. runTime modifiable!
+        probeLocations
+        (
+            (0.0254 0.0253 0.0)
+            (0.0508 0.0253 0.0)
+            (0.0762 0.0253 0.0)
+            (0.1016 0.0253 0.0)
+            (0.1270 0.0253 0.0)
+            (0.1524 0.0253 0.0)
+            (0.1778 0.0253 0.0)
+        );
+
+        // Fields to be probed. runTime modifiable!
+        fields
+        (
+            U p
+        );
+    }
+*/
+);
+
+
+// ************************************************************************* //

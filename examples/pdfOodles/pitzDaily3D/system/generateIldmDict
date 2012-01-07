@@ -1,0 +1,90 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.4                                   |
+|   \\  /    A nd           | Web:      http://www.openfoam.org               |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version         2.0;
+    format          ascii;
+
+    root            "";
+    case            "";
+    instance        "";
+    local           "";
+
+    class           dictionary;
+    object          generateFgmDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+inputFile "gri30.cti";
+gasID "gri30_mix";
+
+defaultConservedVariables 3
+(
+ p 100000
+ T 300
+ phi 0.6
+);
+
+constituentsGivenAs moleNumbers;
+//constituentsGivenAs moleFractions;
+//constituentsGivenAs massFractions;
+
+fuel 1
+(
+ C3H8 1.0
+); 
+
+oxidant 2
+(
+ O2 1.0
+ N2 3.76
+);
+
+majorProducts 2
+(
+ CO2 3.0
+ H2O 4.0
+);
+
+mixtureFractionBasedOn C;
+
+stoichiometricOxidantFuelMassRatio 15.675;
+
+conservedVariableLoops
+(
+ {
+   variable h;
+   start -1.71666e+06;
+   end -84874.1;
+   resolution 50;
+ }
+
+/*
+ {
+   variable phi;
+   start 0.0;
+   end 1.0;
+   resolution 50;
+ }
+*/
+
+);
+
+ILDMgeneratorType FGM;
+onlyFromCache no;
+
+laminarFlameDomainLength 0.2;
+laminarFlameInitialDomainResolution 5;
+flameShift 0.0;
+
+progressVariableName CO2;
+resolution 50;
+
+// ************************************************************************* //

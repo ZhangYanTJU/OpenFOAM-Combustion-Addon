@@ -1,0 +1,61 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.3                                   |
+|   \\  /    A nd           | Web:      http://www.openfoam.org               |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version         2.0;
+    format          ascii;
+
+    root            "";
+    case            "";
+    instance        "";
+    local           "";
+
+    class           dictionary;
+    object          thermodynamicProperties;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+thermoType SIJPDFconstZthermo;
+
+LDMtableName LDMtable;
+
+
+mixtureFractionVariableName z;
+
+
+compositionPDFs
+(
+ {
+  PDFtype beta;
+  variable CO2;
+  preIntegrationResolutionFirstMoment 20;
+  preIntegrationResolutionSecondMoment 20;
+ }
+);
+
+CO2SecondMoment
+{
+
+
+ type transport;
+ C_D 1.0;
+ Sc_t 1.0;
+
+/*
+ type FSD_W<SIJPDFconstZthermo>;
+ XiCoef          XiCoef [0 0 0 0 0 0 0] 0.62;
+ XiShapeCoef     XiShapeCoef [0 0 0 0 0 0 0] 1;
+ uPrimeCoef      uPrimeCoef [0 0 0 0 0 0 0] 1;
+ sL sL [0 1 -1 0 0 0 0] 0.137;
+*/
+};
+
+
+/*********************************************************************/
