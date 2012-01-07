@@ -1,0 +1,94 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.3                                   |
+|   \\  /    A nd           | Web:      http://www.openfoam.org               |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version         2.0;
+    format          ascii;
+
+    root            "";
+    case            "";
+    instance        "";
+    local           "";
+
+    class           dictionary;
+    object          controlDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     pdfOodles;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         1;
+
+deltaT          1e-5;
+
+writeControl    adjustableRunTime;
+
+writeInterval   0.0005;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression compressed;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable yes;
+
+functions
+(
+/*
+     preview
+     {
+         type surfaces;
+ 
+         // Where to load it from (if not already in solver)
+         functionObjectLibs ("libsampling.so");
+ 
+         // Output every 10th time step
+         interval 10;
+ 
+         surfaceFormat mtv;
+ 
+         fields
+         (
+             U T p MeanWCO2Dot
+         );
+ 
+         surfaces
+         (
+             interpolatedPlane
+             {
+                 type            plane;
+                 basePoint       (0.0 0.0 1e-5);
+                 normalVector    (1 1e-5 0);
+                 interpolate     true;
+             }
+         );
+      }
+  */     
+);
+
+adjustTimeStep yes;
+
+maxCo 0.45;
+
+
+// ************************************************************************* //

@@ -1,6 +1,16 @@
+############  Install & Build  ##############
+
+Add the following line to your ~/.bashrc:
+
+  source ~/OpenFOAM/OpenFOAM-1.6-ext/etc/bashrc
++ source /path/to/CombustionAddons/bashrc
+
+Please adjust the paths in CombustionAddons/bashrc according to your local installation.
+
 Dependencies:
  * Cuba 3.0
 
 CUBA 3.0
 ========
- CFLAGS=-fPIC ./configure --prefix=/home/hannes/Programme/Cuba-3.0/platforms/linux64GccDPOpt
+Compile with:
+$ CFLAGS=-fPIC ./configure --prefix=/home/hannes/Programme/Cuba-3.0/platforms/linux64GccDPOpt
