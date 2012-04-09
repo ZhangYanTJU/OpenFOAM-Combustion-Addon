@@ -1,0 +1,3 @@
+edcFoam.C
+
+EXE = $(FOAM_APPBIN)/edcFoam

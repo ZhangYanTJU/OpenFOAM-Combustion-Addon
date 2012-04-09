@@ -1,0 +1,55 @@
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       polyBoundaryMesh;
+    location    "constant/polyMesh";
+    object      boundary;
+}
+
+7
+(
+outer
+{
+ type symmetryPlane;
+ nFaces 100;
+ startFace 16815;
+}
+bluffbody
+{
+ type wall;
+ nFaces 50;
+ startFace 16915;
+}
+back
+{
+ type wedge;
+ nFaces 8500;
+ startFace 16965;
+}
+outlet
+{
+ type patch;
+ nFaces 85;
+ startFace 25465;
+}
+front
+{
+ type wedge;
+ nFaces 8500;
+ startFace 25550;
+}
+coflowinlet
+{
+ type patch;
+ nFaces 20;
+ startFace 34050;
+}
+jetinlet
+{
+ type patch;
+ nFaces 15;
+ startFace 34070;
+}
+)

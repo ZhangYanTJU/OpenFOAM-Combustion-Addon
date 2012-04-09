@@ -1,0 +1,19 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    ".";
+    object      thermophysicalProperties;
+}
+
+thermoType      hPsiMixtureThermo<inhomogeneousMixture<sutherlandTransport<specieThermo<janafThermo<perfectGas>>>>>;
+
+stoichiometricAirFuelMassRatio stoichiometricAirFuelMassRatio [ 0 0 0 0 0 0 0 ] 19.07;
+
+fuel            methane_hydrogen 1 9 200 5000 1000 2.33745 0.00546865 -1.96573e-06 3.34663e-10 -2.17257e-14 -5457.91 4.13414 2.03843 0.00915081 -1.43242e-05 1.52012e-08 -5.91291e-12 -5418.88 5.21405 1.5e-06 116;
+
+oxidant         air 1 28.84 200 5000 1000 3.08854 0.00130434 -4.75532e-07 8.34947e-11 -5.5738e-15 -988.135 5.39434 3.28067 0.00134928 -3.25182e-06 4.73271e-09 -2.11558e-12 -1017.61 4.38809 1.5e-06 116;
+
+burntProducts   burnt 1.001 26.988 200 5000 1001 2.98708 0.00196468 -6.90509e-07 1.15739e-10 -7.42435e-15 -11017.7 5.66395 3.245 0.00251114 -4.98632e-06 6.03631e-09 -2.43656e-12 -11111.3 4.11751 1.5015e-06 116.116;
+

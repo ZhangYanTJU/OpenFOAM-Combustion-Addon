@@ -1,0 +1,23 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    ".";
+    object      RASProperties;
+}
+
+
+RASModel            realizableKE;
+turbulence          on;
+printCoeffs         on;
+
+kEpsilonCoeffs
+{
+}
+
+wallFunctionCoeffs
+{
+    kappa            0.4187;
+    E                9;
+}

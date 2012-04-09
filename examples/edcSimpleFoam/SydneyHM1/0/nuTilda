@@ -1,0 +1,45 @@
+FoamFile
+{
+    version         2.0;
+    format          ascii;
+    class           volScalarField;
+    object          nuTilda;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+dimensions      [0 2 -1 0 0 0 0];
+internalField   uniform 1e-6;
+boundaryField
+{
+outer
+{
+ type symmetryPlane;
+}
+bluffbody
+{
+ type zeroGradient;
+}
+back
+{
+ type wedge;
+}
+outlet
+{
+    type inletOutlet;
+    inletValue uniform 1e-6;
+    value uniform 1e-6;
+}
+front
+{
+ type wedge;
+}
+coflowinlet
+{
+    type inletOutlet;
+    inletValue uniform 0.000001;
+}
+jetinlet
+{
+    type inletOutlet;
+    inletValue uniform 0.000001;
+}
+}

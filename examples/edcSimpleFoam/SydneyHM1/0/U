@@ -1,0 +1,48 @@
+FoamFile
+{
+    version         2.0;
+    format          ascii;
+    class           volVectorField;
+    object          U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+dimensions      [0 1 -1 0 0 0 0];
+internalField   uniform (40.000000 -0.000000 -0.000000);
+boundaryField
+{
+outer
+{
+ type symmetryPlane;
+}
+bluffbody
+{
+ type fixedValue;
+ value uniform (0 0 0);
+}
+back
+{
+ type wedge;
+}
+outlet
+{
+    type inletOutlet;
+    inletValue uniform (0 0 0);
+    value uniform (0 0 0);
+}
+front
+{
+ type wedge;
+}
+coflowinlet
+{
+    type timeVaryingUniformFixedValue;
+    fileName "$FOAM_CASE/U_coflowinlet.timeprof";
+    outOfBounds clamp;
+}
+jetinlet
+{
+    type timeVaryingUniformFixedValue;
+    fileName "$FOAM_CASE/U_jetinlet.timeprof";
+    outOfBounds clamp;
+}
+}

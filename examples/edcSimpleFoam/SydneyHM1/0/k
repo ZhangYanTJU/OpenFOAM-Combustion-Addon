@@ -1,0 +1,62 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM Extend Project: Open source CFD        |
+|  \\    /   O peration     | Version:  1.6-ext                               |
+|   \\  /    A nd           | Web:      www.extend-project.de                 |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      binary;
+    class       volScalarField;
+    location    "0";
+    object      k;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 2 -2 0 0 0 0];
+
+internalField   uniform 17.34;
+
+boundaryField
+{
+    outer
+    {
+        type            symmetryPlane;
+    }
+    bluffbody
+    {
+        type            compressible::kqRWallFunction;
+        value           uniform 17.34;
+    }
+    back
+    {
+        type            wedge;
+    }
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform 1;
+        value           uniform 1;
+    }
+    front
+    {
+        type            wedge;
+    }
+    coflowinlet
+    {
+        type            inletOutlet;
+        inletValue      uniform 1.5;
+        value           uniform 1.5;
+    }
+    jetinlet
+    {
+        type            inletOutlet;
+        inletValue      uniform 150.901;
+        value           uniform 150.901;
+    }
+}
+
+
+// ************************************************************************* //
