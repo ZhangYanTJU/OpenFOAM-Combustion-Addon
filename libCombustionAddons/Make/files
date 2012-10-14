@@ -1,3 +1,4 @@
+LESfilters/simpleGridFilter/simpleGridFilter.C
 thermophysicalModels/compositionPdf/SIJPDFthermo/integrationScheduleEntry.C
 thermophysicalModels/compositionPdf/abstractProgressVariableThermo/abstractProgressVariableThermo.C
 
@@ -10,15 +11,8 @@ thermophysicalModels/compositionPdf/abstractProgressVariableThermo/secondMoment.
 thermophysicalModels/compositionPdf/abstractProgressVariableThermo/transportSecondMoment.C
 thermophysicalModels/compositionPdf/abstractProgressVariableThermo/transportVariance.C
 thermophysicalModels/compositionPdf/abstractProgressVariableThermo/gradientVariance.C
-//thermophysicalModels/compositionPdf/abstractProgressVariableThermo/dynamicSecondMoment.C
-//thermophysicalModels/compositionPdf/abstractProgressVariableThermo/FSDSecondMoment.C
-//thermophysicalModels/compositionPdf/abstractProgressVariableThermo/FSDNSecondMoment.C
-//thermophysicalModels/compositionPdf/abstractProgressVariableThermo/FSDCSecondMoment.C
-//thermophysicalModels/compositionPdf/abstractProgressVariableThermo/FSDWSecondMoment.C
-//thermophysicalModels/compositionPdf/SIJPDFthermo/SIJPDFthermo.C
-//thermophysicalModels/compositionPdf/SIJPDFthermo/SIJPDFthermoStateFinder.C
+thermophysicalModels/compositionPdf/abstractProgressVariableThermo/dynamicSecondMoment.C
 thermophysicalModels/compositionPdf/SIJPDFvarZthermo/SIJPDFvarZthermo.C
-//thermophysicalModels/compositionPdf/SIJPDFvarZthermo/SIJPDFvarZthermoStateFinder.C
 thermophysicalModels/compositionPdf/integrableFunction/integrableFunction.C
 thermophysicalModels/compositionPdf/chemistryTable/chemicalSystemState.C
 thermophysicalModels/compositionPdf/chemistryTable/chemistryTable.C
@@ -27,9 +21,6 @@ thermophysicalModels/compositionPdf/beta/beta.C
 thermophysicalModels/compositionPdf/clippedGaussian/clippedGaussian.C
 thermophysicalModels/compositionPdf/flameSurfaceDensity/flameSurfaceDensity.C
 
-//functions/combustionProgress/combustionProgressFunctionObject.C
-//boundaryConditions/freeFlameInlet/freeFlameInlet.C
-//boundaryConditions/ORACLESinflow/ORACLESinflowFvPatchVectorField.C
 boundaryConditions/inflowGenerator/genericInflowGeneratorFvPatchVectorField.C
 boundaryConditions/inflowGenerator/spots/homogeneousTurbulence/homogeneousTurbulence.C
 boundaryConditions/inflowGenerator/spots/hat/hat.C

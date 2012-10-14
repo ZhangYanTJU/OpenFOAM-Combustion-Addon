@@ -1,6 +1,9 @@
 #include "dynamicSecondMoment.H"
 #include "addToRunTimeSelectionTable.H"
 
+#include "simpleGridFilter.H"
+#include "simpleFilter.H"
+
 namespace Foam
 {
 
@@ -17,8 +20,8 @@ dynamicSecondMoment::dynamicSecondMoment
     multivariateSurfaceInterpolationScheme<scalar>::fieldTable& mvtab
 )
     : secondMomentSolver(mesh, thermo, variableName, dict, mvtab),
-      gridFilterPtr_(LESfilter::New(mesh, dict, "gridFilter")),
-      testFilterPtr_(LESfilter::New(mesh, dict, "testFilter"))
+      gridFilterPtr_(new simpleGridFilter(mesh, dict)), //LESfilter::New(mesh, dict, "gridFilter")),
+      testFilterPtr_(new simpleFilter(mesh, dict)) //LESfilter::New(mesh, dict, "testFilter"))
 {
 }
 
