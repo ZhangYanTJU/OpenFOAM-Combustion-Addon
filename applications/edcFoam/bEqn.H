@@ -16,7 +16,8 @@ if (composition.contains("ft"))
   //Ymin=min(Ymin, beta*Ypr/(1.+stoicRatio.value()));
 }
 
-omega=Cmag * rho * (turbulence->epsilon()/turbulence->k()) * Ymin;
+tmp<volScalarField> k=turbulence->k();
+omega=Cmag * rho * (turbulence->epsilon()/(k()+dimensionedScalar("", k().dimensions(), SMALL))) * Ymin;
 
 fvScalarMatrix bEqn
 (

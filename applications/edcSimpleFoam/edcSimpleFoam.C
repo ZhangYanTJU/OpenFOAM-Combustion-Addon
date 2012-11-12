@@ -95,6 +95,8 @@ int main(int argc, char *argv[])
 
 
         rho = thermo.rho();
+        rho = max(rho, rhoMin);
+        rho = min(rho, rhoMax);
         rho.relax();
         Info<< "rho max/min : " << max(rho).value() << " " << min(rho).value() << endl;
 

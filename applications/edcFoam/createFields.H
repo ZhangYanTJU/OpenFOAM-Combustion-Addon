@@ -60,6 +60,22 @@ volVectorField U
 
 #include "compressibleCreatePhi.H"
 
+    label pRefCell = 0;
+    scalar pRefValue = 0.0;
+    setRefCell(p, mesh.solutionDict().subDict("SIMPLE"), pRefCell, pRefValue);
+
+    dimensionedScalar rhoMax
+    (
+        mesh.solutionDict().subDict("SIMPLE").lookup("rhoMax")
+    );
+
+    dimensionedScalar rhoMin
+    (
+        mesh.solutionDict().subDict("SIMPLE").lookup("rhoMin")
+    );
+
+
+
 Info<< "Creating turbulence model\n" << endl;
 autoPtr<compressible::turbulenceModel> turbulence
 (

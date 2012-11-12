@@ -1,3 +1,4 @@
+relaxedFlowRateInletVelocity/relaxedFlowRateInletVelocityFvPatchVectorField.C
 edcSimpleFoam.C
 
 EXE = $(FOAM_APPBIN)/edcSimpleFoam

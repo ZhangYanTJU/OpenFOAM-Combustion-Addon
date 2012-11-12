@@ -11,4 +11,7 @@ if (composition.contains("ft"))
 
     ftEqn.relax();
     ftEqn.solve();
+
+    ft.max(0.0);
+    ft.min(1.0);
 }
