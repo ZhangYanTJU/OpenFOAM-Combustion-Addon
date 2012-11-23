@@ -1,4 +1,5 @@
 ignition/ignitionSite.C
 pdfOodles.C
 
-EXE = $(FOAM_APPBIN)/pdfOodles
+dir=$(shell pwd)
+EXE = $(dir)/../../bin/$(WM_OPTIONS)/pdfOodles

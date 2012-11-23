@@ -13,4 +13,4 @@ EXE_INC = \
 EXE_LIBS = \
     -lfiniteVolume \
     -lmeshTools \
-    -lCombustionAddons
+    -L../../lib/$(WM_OPTIONS) -lCombustionAddons

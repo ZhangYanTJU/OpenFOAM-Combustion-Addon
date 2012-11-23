@@ -1,3 +1,4 @@
 edcFoam.C
 
-EXE = $(FOAM_APPBIN)/edcFoam
+dir=$(shell pwd)
+EXE = $(dir)/../../bin/$(WM_OPTIONS)/edcFoam

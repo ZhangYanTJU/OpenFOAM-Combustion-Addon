@@ -26,4 +26,5 @@ boundaryConditions/inflowGenerator/spots/homogeneousTurbulence/homogeneousTurbul
 boundaryConditions/inflowGenerator/spots/hat/hat.C
 boundaryConditions/inflowGenerator/inflowGeneratorFvPatchVectorFieldFwd.C
 
-LIB = $(FOAM_LIBBIN)/libCombustionAddons
+dir=$(shell pwd)
+LIB = $(dir)/../lib/$(WM_OPTIONS)/libCombustionAddons

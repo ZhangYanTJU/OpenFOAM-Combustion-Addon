@@ -1,3 +1,4 @@
 simplePdfOodles.C
 
-EXE = $(FOAM_APPBIN)/simplePdfOodles
+dir=$(shell pwd)
+EXE = $(dir)/../../bin/$(WM_OPTIONS)/simplePdfOodles
