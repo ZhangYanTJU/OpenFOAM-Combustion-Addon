@@ -12,7 +12,7 @@
     hsEqn.relax();
     hsEqn.solve();
 
-    if (runTime.outputTime()) hs.write();
+//    if (runTime.outputTime()) hs.write();
 
     thermo.correct();
 
