@@ -4,9 +4,9 @@
         mvConvection->fvmDiv(phi, hs)
       - fvm::laplacian(turbulence->alphaEff(), hs)
 //      - fvm::laplacian(turbulence->muEff(), hs)  // unit lewis no.
-//     ==
+     ==
 //        DpDt
-      + chemistrySh
+       chemistrySh
     );
 
     hsEqn.relax();
