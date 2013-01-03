@@ -44,7 +44,8 @@ relaxedFlowRateInletVelocityFvPatchVectorField
     flowRate_(0),
     phiName_("phi"),
     rhoName_("rho"),
-    relax_(1.0)
+    relaxUp_(1.0),
+    relaxDown_(1.0)
 {}
 
 
@@ -62,7 +63,8 @@ relaxedFlowRateInletVelocityFvPatchVectorField
     flowRate_(ptf.flowRate_),
     phiName_(ptf.phiName_),
     rhoName_(ptf.rhoName_),
-    relax_(ptf.relax_)
+    relaxUp_(ptf.relaxUp_),
+    relaxDown_(ptf.relaxDown_)
 {}
 
 
@@ -79,7 +81,8 @@ relaxedFlowRateInletVelocityFvPatchVectorField
     flowRate_(readScalar(dict.lookup("flowRate"))),
     phiName_(dict.lookupOrDefault<word>("phi", "phi")),
     rhoName_(dict.lookupOrDefault<word>("rho", "rho")),
-    relax_(dict.lookupOrDefault<scalar>("relax", 0.5))
+    relaxUp_(dict.lookupOrDefault<scalar>("relaxUp", 0.001)),
+    relaxDown_(dict.lookupOrDefault<scalar>("relaxDown", 1.))
 {}
 
 
@@ -94,7 +97,8 @@ relaxedFlowRateInletVelocityFvPatchVectorField
     flowRate_(ptf.flowRate_),
     phiName_(ptf.phiName_),
     rhoName_(ptf.rhoName_),
-    relax_(ptf.relax_)
+    relaxUp_(ptf.relaxUp_),
+    relaxDown_(ptf.relaxDown_)
 {}
 
 
@@ -110,7 +114,8 @@ relaxedFlowRateInletVelocityFvPatchVectorField
     flowRate_(ptf.flowRate_),
     phiName_(ptf.phiName_),
     rhoName_(ptf.rhoName_),
-    relax_(ptf.relax_)
+    relaxUp_(ptf.relaxUp_),
+    relaxDown_(ptf.relaxDown_)
 {}
 
 
@@ -128,13 +133,15 @@ void Foam::relaxedFlowRateInletVelocityFvPatchVectorField::updateCoeffs()
 
     vectorField n = patch().nf();
 
+    scalarField newU(n.size());
+
     const surfaceScalarField& phi =
         db().lookupObject<surfaceScalarField>(phiName_);
 
     if (phi.dimensions() == dimVelocity*dimArea)
     {
         // Volumetric flow-rate
-      operator==(relax_*(n*avgU)+(1.-relax_)*(*this));
+      newU=avgU;
     }
     else if (phi.dimensions() == dimDensity*dimVelocity*dimArea)
     {
@@ -142,7 +149,7 @@ void Foam::relaxedFlowRateInletVelocityFvPatchVectorField::updateCoeffs()
             patch().lookupPatchField<volScalarField, scalar>(rhoName_);
 
         // Mass flow-rate
-        operator==(relax_*(n*avgU/rhop)+(1.-relax_)*(*this));
+        newU=avgU/rhop;
     }
     else
     {
@@ -155,6 +162,11 @@ void Foam::relaxedFlowRateInletVelocityFvPatchVectorField::updateCoeffs()
             << " in file " << this->dimensionedInternalField().objectPath()
             << nl << exit(FatalError);
     }
+    //Info<<newU<<((*this)&n)<<endl;
+    scalarField relax( n.size() );
+    relax = (newU<((*this)&n) ? relaxUp_ : relaxDown_ );
+    //Info<<relax<<endl;
+    operator==( relax*n*newU + (1.-relax)*(*this) );
 
     fixedValueFvPatchField<vector>::updateCoeffs();
 }
@@ -164,6 +176,8 @@ void Foam::relaxedFlowRateInletVelocityFvPatchVectorField::write(Ostream& os) co
 {
     fvPatchField<vector>::write(os);
     os.writeKeyword("flowRate") << flowRate_ << token::END_STATEMENT << nl;
+    os.writeKeyword("relaxUp") << relaxUp_ << token::END_STATEMENT << nl;
+    os.writeKeyword("relaxDown") << relaxDown_ << token::END_STATEMENT << nl;
     if (phiName_ != "phi")
     {
         os.writeKeyword("phi") << phiName_ << token::END_STATEMENT << nl;

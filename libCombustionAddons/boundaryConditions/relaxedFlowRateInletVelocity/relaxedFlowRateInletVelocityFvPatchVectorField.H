@@ -82,7 +82,8 @@ class relaxedFlowRateInletVelocityFvPatchVectorField
         //- Name of the density field used to normalize the mass flux
         word rhoName_;
 
-	scalar relax_;
+	scalar relaxUp_;
+	scalar relaxDown_;
 
 public:
 

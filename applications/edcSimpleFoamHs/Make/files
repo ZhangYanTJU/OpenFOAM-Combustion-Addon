@@ -1,5 +1,4 @@
 edcSimpleFoamHs.C
-../edcSimpleFoam/relaxedFlowRateInletVelocity/relaxedFlowRateInletVelocityFvPatchVectorField.C
 
 dir=$(shell pwd)
 EXE = $(dir)/../../bin/$(WM_OPTIONS)/edcSimpleFoamHs

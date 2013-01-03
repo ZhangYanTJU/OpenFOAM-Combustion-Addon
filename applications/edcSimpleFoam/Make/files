@@ -1,4 +1,3 @@
-relaxedFlowRateInletVelocity/relaxedFlowRateInletVelocityFvPatchVectorField.C
 edcSimpleFoam.C
 
 dir=$(shell pwd)
