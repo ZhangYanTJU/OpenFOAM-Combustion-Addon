@@ -45,7 +45,8 @@ relaxedFlowRateInletVelocityFvPatchVectorField
     phiName_("phi"),
     rhoName_("rho"),
     relaxUp_(1.0),
-    relaxDown_(1.0)
+    relaxDown_(1.0),
+    lastUpdate_(db().time().startTime().value())
 {}
 
 
@@ -64,7 +65,8 @@ relaxedFlowRateInletVelocityFvPatchVectorField
     phiName_(ptf.phiName_),
     rhoName_(ptf.rhoName_),
     relaxUp_(ptf.relaxUp_),
-    relaxDown_(ptf.relaxDown_)
+    relaxDown_(ptf.relaxDown_),
+    lastUpdate_(ptf.lastUpdate_)
 {}
 
 
@@ -82,7 +84,8 @@ relaxedFlowRateInletVelocityFvPatchVectorField
     phiName_(dict.lookupOrDefault<word>("phi", "phi")),
     rhoName_(dict.lookupOrDefault<word>("rho", "rho")),
     relaxUp_(dict.lookupOrDefault<scalar>("relaxUp", 0.001)),
-    relaxDown_(dict.lookupOrDefault<scalar>("relaxDown", 1.))
+    relaxDown_(dict.lookupOrDefault<scalar>("relaxDown", 1.)),
+    lastUpdate_(db().time().startTime().value())
 {}
 
 
@@ -98,7 +101,8 @@ relaxedFlowRateInletVelocityFvPatchVectorField
     phiName_(ptf.phiName_),
     rhoName_(ptf.rhoName_),
     relaxUp_(ptf.relaxUp_),
-    relaxDown_(ptf.relaxDown_)
+    relaxDown_(ptf.relaxDown_),
+    lastUpdate_(ptf.lastUpdate_)
 {}
 
 
@@ -115,7 +119,8 @@ relaxedFlowRateInletVelocityFvPatchVectorField
     phiName_(ptf.phiName_),
     rhoName_(ptf.rhoName_),
     relaxUp_(ptf.relaxUp_),
-    relaxDown_(ptf.relaxDown_)
+    relaxDown_(ptf.relaxDown_),
+    lastUpdate_(ptf.lastUpdate_)
 {}
 
 
@@ -123,10 +128,11 @@ relaxedFlowRateInletVelocityFvPatchVectorField
 
 void Foam::relaxedFlowRateInletVelocityFvPatchVectorField::updateCoeffs()
 {
-    if (updated())
+  if (updated() || (db().time().value()<=lastUpdate_))
     {
         return;
     }
+  lastUpdate_=db().time().value();
 
     // A simpler way of doing this would be nice
     scalar avgU = -flowRate_/gSum(patch().magSf());
@@ -167,6 +173,8 @@ void Foam::relaxedFlowRateInletVelocityFvPatchVectorField::updateCoeffs()
     relax = (newU<((*this)&n) ? relaxUp_ : relaxDown_ );
     //Info<<relax<<endl;
     operator==( relax*n*newU + (1.-relax)*(*this) );
+
+    Info<<"Setting new velocity to "<<(gAverage(*this))<<endl;
 
     fixedValueFvPatchField<vector>::updateCoeffs();
 }

@@ -85,6 +85,8 @@ class relaxedFlowRateInletVelocityFvPatchVectorField
 	scalar relaxUp_;
 	scalar relaxDown_;
 
+        scalar lastUpdate_;
+
 public:
 
    //- Runtime type information
