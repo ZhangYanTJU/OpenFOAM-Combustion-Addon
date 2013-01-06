@@ -1,0 +1,4 @@
+edcPimpleFoamHs.C
+
+dir=$(shell pwd)
+EXE = $(dir)/../../bin/$(WM_OPTIONS)/edcPimpleFoamHs
