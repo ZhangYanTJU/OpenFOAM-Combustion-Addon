@@ -30,6 +30,6 @@ if (momentumPredictor)
 else
 {
   volScalarField rAU = 1.0/UEqn().A();
-    U = rAU*(UEqn().H() - fvc::grad(p));
-    U.correctBoundaryConditions();
+  U = rAU*(UEqn().H() - fvc::grad(p));
+  U.correctBoundaryConditions();
 }

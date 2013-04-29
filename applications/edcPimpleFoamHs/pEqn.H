@@ -11,6 +11,8 @@ if (nCorr <= 1)
     UEqn.clear();
 }
 
+scalar tmppResidual=0;
+
 if (transonic)
 {
     surfaceScalarField phid
@@ -19,7 +21,7 @@ if (transonic)
         fvc::interpolate(psi)
        *(
             (fvc::interpolate(U) & mesh.Sf())
-           + fvc::ddtPhiCorr(rAU, rho, U, phi)
+	    + fvc::ddtPhiCorr(rAU, rho, U, phi)
         )
     );
 
@@ -28,12 +30,13 @@ if (transonic)
 
         fvScalarMatrix pEqn
         (
-            fvm::ddt(psi, p)
+	    fvm::ddt(psi, p)
           + fvm::div(phid, p)
           - fvm::laplacian(rho*rAU, p)
         );
 
-        pEqn.setReference(pRefCell, pRefValue);
+	pEqn.relax(mesh.relaxationFactor("pEqn"));
+        //pEqn.setReference(pRefCell, pRefValue);
 
         if
         (
@@ -42,17 +45,21 @@ if (transonic)
             && nonOrth == nNonOrthCorr
         )
         {
-            pEqn.solve(mesh.solver("pFinal"));
+	  tmppResidual=pEqn.solve(mesh.solver("pFinal")).initialResidual();
         }
         else
         {
-            pEqn.solve();
+	  tmppResidual=pEqn.solve().initialResidual();
         }
 
 
         if (nonOrth == nNonOrthCorr)
         {
             phi == pEqn.flux();
+	}
+        if (nonOrth == 0)
+        {
+	    pResidual=tmppResidual;
         }
     }
 }
@@ -82,20 +89,25 @@ else
          && nonOrth == nNonOrthCorr
         )
         {
-            pEqn.solve(mesh.solver("pFinal"));
+	  tmppResidual=pEqn.solve(mesh.solver("pFinal")).initialResidual();
         }
         else
         {
-            pEqn.solve();
+	  tmppResidual=pEqn.solve().initialResidual();
         }
 
         if (nonOrth == nNonOrthCorr)
         {
             phi += pEqn.flux();
+	}
+        if (nonOrth == 0)
+        {
+	    pResidual=tmppResidual;
         }
     }
 }
 
+#include "rhoEqn.H"
 #include "compressibleContinuityErrs.H"
 
 //if (oCorr != nOuterCorr-1)

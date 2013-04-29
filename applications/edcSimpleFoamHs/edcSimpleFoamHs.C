@@ -38,6 +38,8 @@ Description
 #include "multivariateScheme.H"
 #include "thermoPhysicsTypes.H"
 
+#define SIMPLEC
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 int main(int argc, char *argv[])
@@ -67,9 +69,15 @@ int main(int argc, char *argv[])
 
         {
 #           include "UEqn.H"
+#ifdef SIMPLEC
+#           include "pEqn.H"
+#           include "YEqn.H"
+#           include "hsEqn.H"
+#else
 #           include "YEqn.H"
 #           include "hsEqn.H"
 #           include "pEqn.H"
+#endif
         }
 
         turbulence->correct();

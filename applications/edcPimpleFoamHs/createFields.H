@@ -70,6 +70,13 @@ dimensionedScalar pMin
     mesh.solutionDict().subDict("PIMPLE").lookup("pMin")
 );
 
+scalar minpResidual=mesh.solutionDict().subDict("PIMPLE").lookupOrDefault<scalar>("minpResidual", 1e-6);
+Switch adjustDeltaTByConvergence
+(
+    mesh.solutionDict().subDict("PIMPLE").lookup("adjustDeltaTByConvergence")
+);
+
+
 
 Info << "Creating turbulence model.\n" << nl;
 autoPtr<compressible::turbulenceModel> turbulence

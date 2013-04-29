@@ -12,7 +12,7 @@ tmp<fv::convectionScheme<scalar> > mvConvection
 
 {
   chemistrySh=dimensionedScalar("chemistrySh", dimEnergy/dimTime/dimVolume, 0.0);
-
+  /*
   const volScalarField& Yfu=composition.Y(fuel);
   const volScalarField& Yox=composition.Y(ox);
 
@@ -72,7 +72,10 @@ tmp<fv::convectionScheme<scalar> > mvConvection
 	      YEqn.solve(mesh.solver("Yi"));
 	    }
 
-          Info<<Y[i].name()<<" min/max : "<<min(Yi).value()<<" / "<<max(Yi).value()<<endl;
+          Info<<Y[i].name()<<" min/max : "
+	      <<min(Yi).value()
+	      <<" / "
+	      <<max(Yi).value()<<endl;
           Yi.max(0.0);
           Yi.min(1.0);
           Yt += Yi;
@@ -84,8 +87,12 @@ tmp<fv::convectionScheme<scalar> > mvConvection
     }
 
     Y[inertIndex] = scalar(1) - Yt;
-    Info<<Y[inertIndex].name()<<" min/max : "<<min(Y[inertIndex]).value()<<" / "<<max(Y[inertIndex]).value()<<endl;
+    Info<<Y[inertIndex].name()<<" min/max : "
+	<<min(Y[inertIndex]).value()
+	<<" / "
+	<<max(Y[inertIndex]).value()<<endl;
     Y[inertIndex].max(0.0);
     Y[inertIndex].min(1.0);
 
+*/
 }

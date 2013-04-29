@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 
     while (runTime.run())
     {
-#        include "readEdcProperties.H"
+        #include "readEdcProperties.H"
         #include "readTimeControls.H"
         #include "readPIMPLEControls.H"
         #include "compressibleCourantNo.H"
@@ -76,8 +76,11 @@ int main(int argc, char *argv[])
 
         #include "rhoEqn.H"
 
+	scalar pResidual=GREAT;
+
         // --- Pressure-velocity PIMPLE corrector loop
-        for (int oCorr=0; oCorr<nOuterCorr; oCorr++)
+        int oCorr=0;
+	for (; oCorr<nOuterCorr; oCorr++)
         {
 #           include "UEqn.H"
 #           include "YEqn.H"
@@ -89,8 +92,28 @@ int main(int argc, char *argv[])
 #              include "pEqn.H"
 	    }
 
+	    if (pResidual<minpResidual) // Pressure converged
+	      {
+		if (adjustDeltaTByConvergence && 
+		    (oCorr < 4*nOuterCorr/5))
+		  {
+		    runTime.setDeltaT(runTime.deltaT().value()/0.8);
+		  }
+		Info<<"SIMPLE loop converged after "<<oCorr<<" iterations"<<endl;
+		break;
+	      }
+
 	    turbulence->correct();
         }
+
+	if (pResidual>=minpResidual) // Pressure not converged
+	  {
+	    if (adjustDeltaTByConvergence && 
+		(oCorr >= nOuterCorr))
+	      {
+		runTime.setDeltaT(runTime.deltaT().value()*0.8);
+	      }
+	  }
 
         runTime.write();
 

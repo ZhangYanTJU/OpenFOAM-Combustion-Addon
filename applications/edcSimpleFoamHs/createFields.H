@@ -65,6 +65,11 @@ dimensionedScalar rhoMin
     mesh.solutionDict().subDict("SIMPLE").lookup("rhoMin")
 );
 
+dimensionedScalar pMin
+(
+    mesh.solutionDict().subDict("SIMPLE").lookup("pMin")
+);
+
 
 Info << "Creating turbulence model.\n" << nl;
 autoPtr<compressible::turbulenceModel> turbulence
