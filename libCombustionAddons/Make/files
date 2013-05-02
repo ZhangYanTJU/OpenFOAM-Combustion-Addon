@@ -26,6 +26,7 @@ boundaryConditions/inflowGenerator/spots/homogeneousTurbulence/homogeneousTurbul
 boundaryConditions/inflowGenerator/spots/hat/hat.C
 boundaryConditions/inflowGenerator/inflowGeneratorFvPatchVectorFieldFwd.C
 boundaryConditions/relaxedFlowRateInletVelocity/relaxedFlowRateInletVelocityFvPatchVectorField.C
+boundaryConditions/timeVaryingRelaxedUniformTotalPressure/timeVaryingRelaxedUniformTotalPressureFvPatchScalarField.C
 
 dir=$(shell pwd)
 LIB = $(dir)/../lib/$(WM_OPTIONS)/libCombustionAddons
