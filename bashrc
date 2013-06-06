@@ -12,6 +12,9 @@ CANTERA_PATH=/usr/local/cantera
 export CANTERA_INC_PATH=$CANTERA_PATH/include
 export CANTERA_LIB_PATH=$CANTERA_PATH/lib
 
+export OCTAVE_INC_PATH=/usr/include/octave-3.2.4
+export OCTAVE_LIB_PATH=/usr/lib/octave-3.2.4
+
 cleanProg=$WM_PROJECT_DIR/bin/foamCleanPath
 
 if [ -d $FOAM_OFCA_DIR/bin/$WM_OPTIONS ]; then
@@ -19,7 +22,7 @@ if [ -d $FOAM_OFCA_DIR/bin/$WM_OPTIONS ]; then
  cleanEnv=`$cleanProg "$PATH"` && PATH="$cleanEnv"
 fi
 if [ -d $FOAM_OFCA_DIR/lib/$WM_OPTIONS ]; then
- export LD_LIBRARY_PATH=$FOAM_OFCA_DIR/lib/$WM_OPTIONS:$LD_LIBRARY_PATH
+ export LD_LIBRARY_PATH=$OCTAVE_LIB_PATH:$FOAM_OFCA_DIR/lib/$WM_OPTIONS:$LD_LIBRARY_PATH
  cleanEnv=`$cleanProg "$LD_LIBRARY_PATH"` && LD_LIBRARY_PATH="$cleanEnv"
 fi
 

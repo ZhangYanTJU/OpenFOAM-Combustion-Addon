@@ -1,0 +1,22 @@
+enthalpyGenerationLoop.C
+mixtureFractionGenerationLoop.C
+generationLoop.C
+Spline.C
+compositionMapArithmetics.C
+stdMapConversions.C
+main.C
+LDM.C
+interpolatedLDM.C
+mixingLine.C
+FGM.C
+mixtureFraction.C
+ChemicalSystem.C
+/*ILDM.C
+//ILDMsolver.C
+//octaveILDMsolver.C
+//limexILDMsolver.C
+//nleq1ILDMsolver.C
+//REDIM.C*/
+
+dir=$(shell pwd)
+EXE = $(dir)/../../bin/$(WM_OPTIONS)/generateILDM

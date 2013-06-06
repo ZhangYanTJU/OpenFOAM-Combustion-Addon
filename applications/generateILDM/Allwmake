@@ -1,0 +1,9 @@
+#!/bin/bash
+
+for i in `find . -iname "*.f"`; do
+
+  f77 -c $i -o ${i%.f}.o
+
+done
+
+wmake

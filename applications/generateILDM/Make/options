@@ -1,0 +1,27 @@
+EXE_INC = \
+ -g \
+ -I$(CANTERA_INC_PATH) \
+ -I$(OCTAVE_INC_PATH) \
+ -I$(OCTAVE_INC_PATH)/octave \
+ -I../../libCombustionAddons/lnInclude \
+ -I$(FOAM_SRC)/finiteVolume/lnInclude \
+
+EXE_LIBS = \
+ limex/LIMEX4_2_Dense.o \
+ limex/LIMEX4_2A1.o \
+ nleq1/nleq1.o \
+ nleq1/zibmon.o \
+ nleq1/zibsec.o \
+ nleq1/zibconst.o \
+ nleq1/wnorm.o \
+ nleq1/linalg_nleq1.o \
+ eulex/eulex.o \
+ /usr/lib/libf2c.a \
+ -L$(OCTAVE_LIB_PATH) \
+ -loctave -lcruft \
+ -L$(CANTERA_LIB_PATH) \
+ -luser -loneD -lzeroD -ltransport -lcantera \
+ -lctblas -lctlapack -lctmath -ltpx -lconverters -lctcxx \
+ /usr/lib/libctf2c.a \
+ -L../../lib/$(WM_OPTIONS) -lCombustionAddons -lfiniteVolume \
+ -lgsl -lgslcblas
